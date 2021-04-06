@@ -1,148 +1,81 @@
-import React, {useRef, useState} from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
   StyleSheet,
   TouchableOpacity,
   StatusBar,
-  Animated,
+  Dimensions,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import Register from './Register';
-import Login from './Login';
+import Svg, {Path} from 'react-native-svg';
+import LinearGradient from 'react-native-linear-gradient';
 
-const CIRCLE_SIZE = 100;
-const Circle = ({onPress, animatedValue, barItem, text, index}) => {
-  const containerBackGround = animatedValue.interpolate({
-    inputRange: [0, 0.001, 0.5, 0.501, 1],
-    outputRange: ['gold', 'gold', 'gold', '#444', '#444'],
-  });
-  const cercleBackGround = animatedValue.interpolate({
-    inputRange: [0, 0.001, 0.5, 0.7, 1],
-    outputRange: ['#444', '#444', '#444', 'gold', 'gold'],
-  });
+const HeaderAnimation = () => {
+  const vWidth = 521;
+  const vHeight = 294;
+  const width = Dimensions.get('window').width - 64;
+  const heigh = (width * vHeight) / vWidth;
 
+  const paths = [
+    'M98.4209 95.7059H71.5455L94.6602 0H121.536L98.4209 95.7059Z',
+    'M163.179 24.5181L160.977 32.9318C168.927 26.3147 178.558 23.0939 189.871 23.2691C199.227 23.4006 206.137 25.8546 210.601 30.6311C215.065 35.4077 216.685 42.0247 215.462 50.4822L205.005 95.7059H179.139L189.779 50.285C190.085 48.576 190.146 47.0203 189.962 45.618C189.168 41.1483 185.254 38.8476 178.222 38.7162C171.434 38.5409 165.35 40.7977 159.968 45.4866L147.586 95.7059H121.719L138.963 24.5838L163.179 24.5181Z',
+    'M282.88 75.6576C283.858 72.1519 280.464 69.6102 272.698 68.0327L264.351 66.5208C244.6 62.6207 234.999 55.7408 235.55 45.881C235.856 39.1763 239.983 33.7205 247.933 29.5137C255.943 25.263 265.574 23.1815 276.826 23.2691C288.017 23.3568 297.067 25.4821 303.977 29.6452C310.887 33.8082 314.403 39.3516 314.525 46.2754L288.842 46.2096C288.964 40.1185 284.745 37.029 276.184 36.9414C272.148 36.9414 268.632 37.6645 265.636 39.1106C262.7 40.5567 260.896 42.5067 260.224 44.9607C259.307 48.4664 263.006 50.9423 271.323 52.3884L274.992 52.98C283.43 54.4261 289.882 56.0913 294.346 57.9757C298.809 59.8162 302.234 62.1168 304.619 64.8775C307.065 67.6383 308.196 70.9468 308.013 74.8031C307.829 79.3167 305.781 83.2606 301.867 86.6348C298.015 90.0091 292.694 92.6164 285.907 94.4569C279.18 96.2974 272.087 97.152 264.627 97.0205C253.62 96.9329 244.447 94.6761 237.109 90.2501C229.771 85.7803 226.041 80.0178 225.919 72.9626L250.318 73.094C250.562 79.8863 255.638 83.3263 265.544 83.414C270.314 83.414 274.227 82.7128 277.285 81.3105C280.403 79.9083 282.268 78.0239 282.88 75.6576Z',
+    'M372.495 7.09906L368.184 24.5838H384.695L381.301 38.519H364.79L356.352 74.1457C355.985 76.3806 356.229 78.0897 357.085 79.2728C357.942 80.456 360.021 81.0914 363.323 81.1791C364.301 81.2229 366.931 81.1133 371.211 80.8504L369.377 95.3772C364.79 96.4727 359.837 96.9767 354.517 96.889C346.017 96.8014 339.688 94.8952 335.53 91.1703C331.372 87.4455 329.66 82.4061 330.393 76.052L338.924 38.519H324.89L328.284 24.5838H342.318L346.537 7.09906H372.495Z',
+    'M440.005 95.7059C439.21 93.9092 438.874 91.7619 438.996 89.2641C431.536 94.6103 423.097 97.1958 413.68 97.0205C404.996 96.9329 397.781 94.9171 392.033 90.9731C386.346 86.9854 383.686 82.0774 384.053 76.2492C384.481 68.4928 389.006 62.555 397.628 58.4358C406.311 54.2728 417.93 52.1912 432.483 52.1912L444.591 52.3227L445.875 48.0501C446.242 46.604 446.334 45.2236 446.15 43.909C445.845 41.8494 444.744 40.2499 442.848 39.1106C441.014 37.9274 438.568 37.3139 435.51 37.2701C431.474 37.1824 428.05 37.9055 425.237 39.4392C422.424 40.9292 420.62 43.0983 419.825 45.9467L393.867 46.0124C394.295 39.2201 398.637 33.7205 406.892 29.5137C415.209 25.263 425.451 23.1815 437.62 23.2691C448.872 23.4444 457.677 25.8546 464.037 30.4997C470.396 35.1009 473.056 41.0387 472.017 48.3131L464.404 82.3622L463.945 86.5691C463.823 89.6804 464.343 92.3097 465.504 94.4569L465.413 95.7059H440.005ZM420.101 82.6252C427.561 82.8005 434.073 80.4779 439.638 75.6576L442.848 63.3657L433.859 63.3C424.32 63.4752 417.44 65.5568 413.221 69.5445C411.692 70.9906 410.745 72.7654 410.378 74.8688C409.888 77.2351 410.561 79.1195 412.396 80.5218C414.291 81.8802 416.86 82.5814 420.101 82.6252Z',
+    'M57.695 186.971L74.1138 256.187L123.92 186.971H159.693L136.487 282.677H109.52L116.124 255.398L129.149 212.804L77.9663 282.677H59.5295L41.6432 210.372L33.021 257.502L26.8754 282.677H0L23.2064 186.971H57.695Z',
+    'M216.288 282.677C215.493 280.88 215.156 278.733 215.279 276.235C207.818 281.581 199.38 284.167 189.962 283.992C181.279 283.904 174.063 281.888 168.315 277.944C162.628 273.957 159.968 269.049 160.335 263.22C160.763 255.464 165.288 249.526 173.911 245.407C182.594 241.244 194.212 239.162 208.766 239.162L220.874 239.294L222.158 235.021C222.525 233.575 222.617 232.195 222.433 230.88C222.127 228.821 221.027 227.221 219.131 226.082C217.297 224.899 214.851 224.285 211.793 224.241C207.757 224.154 204.333 224.877 201.52 226.41C198.707 227.9 196.903 230.069 196.108 232.918L170.15 232.984C170.578 226.191 174.92 220.692 183.175 216.485C191.491 212.234 201.734 210.153 213.903 210.24C225.154 210.416 233.96 212.826 240.32 217.471C246.679 222.072 249.339 228.01 248.3 235.284L240.686 269.333L240.228 273.54C240.105 276.652 240.625 279.281 241.787 281.428L241.695 282.677H216.288ZM196.383 269.596C203.844 269.772 210.356 267.449 215.921 262.629L219.131 250.337L210.142 250.271C200.603 250.446 193.723 252.528 189.504 256.516C187.975 257.962 187.027 259.737 186.66 261.84C186.171 264.206 186.844 266.091 188.678 267.493C190.574 268.851 193.142 269.552 196.383 269.596Z',
+    'M284.898 282.677H258.848L283.339 181.713H309.297L284.898 282.677Z',
+    'M354.059 283.992C345.375 283.948 337.67 282.436 330.944 279.456C324.278 276.432 319.295 272.313 315.993 267.098C312.691 261.84 311.406 256.056 312.14 249.745L312.415 247.116C313.333 240.192 316.146 233.838 320.854 228.054C325.563 222.269 331.616 217.821 339.016 214.71C346.415 211.555 354.609 210.065 363.598 210.24C376.378 210.416 386.04 213.79 392.583 220.363C399.187 226.892 401.694 235.175 400.104 245.21L398.637 253.295H337.823C337.579 257.896 339.138 261.577 342.501 264.338C345.864 267.098 350.451 268.523 356.26 268.61C365.677 268.786 373.932 266.178 381.026 260.788L392.858 271.305C389.128 275.337 383.747 278.492 376.715 280.771C369.682 283.006 362.13 284.079 354.059 283.992ZM362.314 225.556C357.544 225.468 353.294 226.542 349.564 228.777C345.895 231.012 342.593 234.89 339.658 240.411H375.247L375.797 238.702C376.164 236.949 376.195 235.284 375.889 233.707C375.278 231.165 373.779 229.193 371.395 227.791C369.01 226.345 365.983 225.6 362.314 225.556Z',
+    'M449.269 254.346L437.253 261.84L432.208 282.677H406.342L430.741 181.713H456.699L443.307 236.533L448.352 232.655L477.796 211.555H511L467.614 242.12L495.223 282.677H466.88L449.269 254.346Z',
+  ];
   return (
-    <Animated.View
-      style={[
-        StyleSheet.absoluteFillObject,
-        styles.circleContainer,
-        {
-          backgroundColor: containerBackGround,
-        },
-      ]}>
-      <StatusBar
-        translucent
-        backgroundColor="transparent"
-        animated={true}
-        barStyle={barItem}
-      />
-      <Animated.View
-        style={{
-          marginTop: 100,
-          backgroundColor: cercleBackGround,
-          alignSelf: 'center',
-          width: '90%',
-          height: '50%',
-          justifyContent: 'space-between',
-        }}>
-        <Text> Register</Text>
-        {index ? <Login /> : <Register />}
-      </Animated.View>
-      <Animated.View
-        style={[
-          styles.circle,
-          {backgroundColor: cercleBackGround},
-          {
-            transform: [
-              {
-                perspective: 100, //tkadem lik l view #3d
-              },
-              {
-                rotateY: animatedValue.interpolate({
-                  inputRange: [0, 0.5, 1],
-                  outputRange: ['0deg', '-90deg', '-180deg'],
-                }),
-              },
-              {
-                scale: animatedValue.interpolate({
-                  inputRange: [0, 0.5, 1],
-                  outputRange: [1, 8, 1],
-                }),
-              },
-            ],
-          },
-        ]}>
-        <TouchableOpacity onPress={onPress}>
-          <View style={[styles.circle, styles.circleButton]}>
-            <Animated.Text
-              style={[
-                {color: '#fff'},
-                {
-                  transform: [
-                    {
-                      rotateY: animatedValue.interpolate({
-                        inputRange: [0, 0.5, 1],
-                        outputRange: ['0deg', '-90deg', '-180deg'],
-                      }),
-                    },
-                  ],
-                },
-              ]}>
-              {text}
-            </Animated.Text>
-          </View>
-        </TouchableOpacity>
-      </Animated.View>
-    </Animated.View>
+    <View style={styles.layer}>
+      <Svg
+        width={width}
+        height={heigh}
+        viewBox={[-5, -5, vWidth, vHeight].join(' ')}>
+        {paths.map((d, key) => (
+          <Path d={d} stroke="#ddd" fill="#ccc" strokeWidth={10} key={key} />
+        ))}
+      </Svg>
+    </View>
   );
 };
 
 const Landing = () => {
   const navigation = useNavigation();
-  const animatedValue = useRef(new Animated.Value(0)).current;
-  const [index, setIndex] = useState(1);
-  const [textButton, setTextButton] = useState('Sign Up');
-  const [BarItem, setBarItem] = useState('dark-content');
-
-  const animation = toValue =>
-    Animated.timing(animatedValue, {
-      toValue,
-      duration: 3000,
-      useNativeDriver: false,
-    });
-
-  const onPress = () => {
-    setTimeout(() => {
-      setBarItem(style =>
-        style === 'light-content' ? 'dark-content' : 'light-content',
-      );
-      setTextButton(text => (text === 'Sign Up' ? 'Login' : 'Sign Up'));
-      setIndex(index ? 0 : 1);
-    }, 1500);
-    animation(index ? 1 : 0).start();
-  };
+  const colors = [
+    '#405DE6',
+    '#5851DB',
+    '#833AB4',
+    '#C13584',
+    '#E1306C',
+    '#FD1D1D',
+    '#F56040',
+    '#F77737',
+    '#FCAF45',
+    '#FFDC80',
+  ];
 
   return (
     <>
-      <Circle
-        onPress={onPress}
-        barItem={BarItem}
-        index={index}
-        animatedValue={animatedValue}
-        text={textButton}
-      />
-
-      {/* <View style={styles.container}>
-        <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-          <Text>Register</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.container}>
-        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-          <Text>Login</Text>
-        </TouchableOpacity>
-      </View> */}
+      <LinearGradient colors={colors} style={styles.LinearGradient}>
+        <StatusBar backgroundColor="#405DE6" />
+        <HeaderAnimation />
+        <View style={styles.ContentContainer}>
+          <TouchableOpacity
+            style={styles.Button}
+            onPress={() => navigation.navigate('Login')}>
+            <Text style={styles.Text}>Login</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.Button}
+            onPress={() => navigation.navigate('Register')}>
+            <Text style={styles.Text}>Sign Up</Text>
+          </TouchableOpacity>
+        </View>
+      </LinearGradient>
     </>
   );
 };
@@ -150,27 +83,31 @@ const Landing = () => {
 export default Landing;
 
 const styles = StyleSheet.create({
-  container: {
+  layer: {
     flex: 1,
-    justifyContent: 'flex-start',
-  },
-  circleContainer: {
-    flex: 1,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: 8,
-    paddingBottom: 100,
-    backgroundColor: 'gold',
-  },
-  circle: {
-    backgroundColor: '#444',
-    width: CIRCLE_SIZE,
-    height: CIRCLE_SIZE,
-    borderRadius: CIRCLE_SIZE / 2,
-  },
-  circleButton: {
-    backgroundColor: 'transparent',
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
+  },
+  LinearGradient: {
+    flex: 1,
+    justifyContent: 'space-evenly',
+  },
+  Button: {
+    backgroundColor: '#ddd',
+    width: '50%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 65,
+    borderRadius: 30,
+  },
+  ContentContainer: {
+    flex: 2,
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+  },
+  Text: {
+    color: '#C13584',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 });
