@@ -13,6 +13,7 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import * as yup from 'yup';
 import {Formik} from 'formik';
+import auth from '@react-native-firebase/auth';
 
 const reviewSchema = yup.object({
   email: yup.string().email().required(),
@@ -23,7 +24,8 @@ const Login = () => {
   const [visible, setVisible] = useState(true);
   const handleFormSubmit = (values, actions) => {
     actions.resetForm();
-    Login(values);
+    const {email, password} = values;
+    auth().signInWithEmailAndPassword(email, password);
   };
 
   const navigation = useNavigation();

@@ -13,6 +13,8 @@ import * as yup from 'yup';
 import {Formik} from 'formik';
 import {useNavigation} from '@react-navigation/native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 const reviewSchema = yup.object({
   email: yup.string().email().required(),
@@ -24,7 +26,15 @@ const Register = () => {
   const [visible, setVisible] = useState(true);
   const handleFormSubmit = (values, actions) => {
     actions.resetForm();
-    Login(values);
+    const {email, name, password} = values;
+    auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then(result => {
+        console.log(result);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
   const navigation = useNavigation();
   return (
