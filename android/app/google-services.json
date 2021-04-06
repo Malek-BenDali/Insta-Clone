@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "28070066064",
+    "project_id": "instagram-dev-b2149",
+    "storage_bucket": "instagram-dev-b2149.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:28070066064:android:46ca1275fc3c1ec7812515",
+        "android_client_info": {
+          "package_name": "com.instamalek"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "28070066064-u4sol69g47p0qa1usq198lrl9r09h8rd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB73-Revpjv47LMrW0sTS3qt56jCV4-92I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "28070066064-u4sol69g47p0qa1usq198lrl9r09h8rd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
