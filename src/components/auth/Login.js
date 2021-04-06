@@ -8,6 +8,7 @@ import {
   Dimensions,
   StatusBar,
 } from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import * as yup from 'yup';
@@ -24,6 +25,8 @@ const Login = () => {
     actions.resetForm();
     Login(values);
   };
+
+  const navigation = useNavigation();
   return (
     <KeyboardAwareScrollView style={{flex: 1, backgroundColor: 'white'}}>
       <StatusBar backgroundColor="#ff69b4" />
@@ -87,7 +90,11 @@ const Login = () => {
             </View>
           )}
         </Formik>
-        {/* <Text style={styles.secondaryText}> Don't Have an account ? </Text> */}
+        <TouchableOpacity
+          style={styles.secondaryText}
+          onPress={() => navigation.navigate('Register')}>
+          <Text style={styles.secondaryText}> Don't Have an account ? </Text>
+        </TouchableOpacity>
       </View>
     </KeyboardAwareScrollView>
   );
@@ -99,6 +106,11 @@ const styles = StyleSheet.create({
   errorMessage: {
     alignSelf: 'center',
     color: '#ff1493',
+  },
+  primaryButtonText: {
+    fontSize: 17,
+    color: 'white',
+    fontWeight: 'bold',
   },
 
   FormView: {
@@ -117,6 +129,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 30,
+  },
+  secondaryText: {
+    color: '#ff69b4',
+    marginTop: 15,
+    alignSelf: 'flex-end',
+    marginRight: 7,
   },
   input: {
     width: Dimensions.get('window').width * 0.8,
