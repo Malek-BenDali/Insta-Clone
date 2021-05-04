@@ -74,6 +74,26 @@ const Landing = () => {
             onPress={() => navigation.navigate('Register')}>
             <Text style={styles.Text}>Sign Up</Text>
           </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.Button}
+            onPress={() => navigation.navigate('Login')}>
+            <Text style={styles.Text}>Login</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.Button}
+            onPress={() => navigation.navigate('Register')}>
+            <Text style={styles.Text}>Sign Up</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.Button}
+            onPress={() => navigation.navigate('Login')}>
+            <Text style={styles.Text}>Login</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.Button}
+            onPress={() => navigation.navigate('Register')}>
+            <Text style={styles.Text}>Sign Up</Text>
+          </TouchableOpacity>
         </View>
       </LinearGradient>
     </>
