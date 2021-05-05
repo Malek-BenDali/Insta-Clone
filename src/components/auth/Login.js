@@ -27,6 +27,132 @@ const Login = () => {
     const {email, password} = values;
     auth().signInWithEmailAndPassword(email, password);
   };
+  const [visible, setVisible] = useState(true);
+  const handleFormSubmit = (values, actions) => {
+    actions.resetForm();
+    const {email, password} = values;
+    auth().signInWithEmailAndPassword(email, password);
+  };
+  const [visible, setVisible] = useState(true);
+  const handleFormSubmit = (values, actions) => {
+    actions.resetForm();
+    const {email, password} = values;
+    auth().signInWithEmailAndPassword(email, password);
+  };
+  const [visible, setVisible] = useState(true);
+  const handleFormSubmit = (values, actions) => {
+    actions.resetForm();
+    const {email, password} = values;
+    auth().signInWithEmailAndPassword(email, password);
+  };
+  const [visible, setVisible] = useState(true);
+  const handleFormSubmit = (values, actions) => {
+    actions.resetForm();
+    const {email, password} = values;
+    auth().signInWithEmailAndPassword(email, password);
+  };
+  const [visible, setVisible] = useState(true);
+  const handleFormSubmit = (values, actions) => {
+    actions.resetForm();
+    const {email, password} = values;
+    auth().signInWithEmailAndPassword(email, password);
+  };
+  const [visible, setVisible] = useState(true);
+  const handleFormSubmit = (values, actions) => {
+    actions.resetForm();
+    const {email, password} = values;
+    auth().signInWithEmailAndPassword(email, password);
+  };
+  const [visible, setVisible] = useState(true);
+  const handleFormSubmit = (values, actions) => {
+    actions.resetForm();
+    const {email, password} = values;
+    auth().signInWithEmailAndPassword(email, password);
+  };
+  const [visible, setVisible] = useState(true);
+  const handleFormSubmit = (values, actions) => {
+    actions.resetForm();
+    const {email, password} = values;
+    auth().signInWithEmailAndPassword(email, password);
+  };
+  const [visible, setVisible] = useState(true);
+  const handleFormSubmit = (values, actions) => {
+    actions.resetForm();
+    const {email, password} = values;
+    auth().signInWithEmailAndPassword(email, password);
+  };
+  const [visible, setVisible] = useState(true);
+  const handleFormSubmit = (values, actions) => {
+    actions.resetForm();
+    const {email, password} = values;
+    auth().signInWithEmailAndPassword(email, password);
+  };
+  const [visible, setVisible] = useState(true);
+  const handleFormSubmit = (values, actions) => {
+    actions.resetForm();
+    const {email, password} = values;
+    auth().signInWithEmailAndPassword(email, password);
+  };
+  const [visible, setVisible] = useState(true);
+  const handleFormSubmit = (values, actions) => {
+    actions.resetForm();
+    const {email, password} = values;
+    auth().signInWithEmailAndPassword(email, password);
+  };
+  const [visible, setVisible] = useState(true);
+  const handleFormSubmit = (values, actions) => {
+    actions.resetForm();
+    const {email, password} = values;
+    auth().signInWithEmailAndPassword(email, password);
+  };
+  const [visible, setVisible] = useState(true);
+  const handleFormSubmit = (values, actions) => {
+    actions.resetForm();
+    const {email, password} = values;
+    auth().signInWithEmailAndPassword(email, password);
+  };
+  const [visible, setVisible] = useState(true);
+  const handleFormSubmit = (values, actions) => {
+    actions.resetForm();
+    const {email, password} = values;
+    auth().signInWithEmailAndPassword(email, password);
+  };
+  const [visible, setVisible] = useState(true);
+  const handleFormSubmit = (values, actions) => {
+    actions.resetForm();
+    const {email, password} = values;
+    auth().signInWithEmailAndPassword(email, password);
+  };
+  const [visible, setVisible] = useState(true);
+  const handleFormSubmit = (values, actions) => {
+    actions.resetForm();
+    const {email, password} = values;
+    auth().signInWithEmailAndPassword(email, password);
+  };
+  const [visible, setVisible] = useState(true);
+  const handleFormSubmit = (values, actions) => {
+    actions.resetForm();
+    const {email, password} = values;
+    auth().signInWithEmailAndPassword(email, password);
+  };
+  const [visible, setVisible] = useState(true);
+  const handleFormSubmit = (values, actions) => {
+    actions.resetForm();
+    const {email, password} = values;
+    auth().signInWithEmailAndPassword(email, password);
+  };
+  const [visible, setVisible] = useState(true);
+  const handleFormSubmit = (values, actions) => {
+    actions.resetForm();
+    const {email, password} = values;
+    auth().signInWithEmailAndPassword(email, password);
+  };
+  const [visible, setVisible] = useState(true);
+  const handleFormSubmit = (values, actions) => {
+    actions.resetForm();
+    const {email, password} = values;
+    auth().signInWithEmailAndPassword(email, password);
+  };
 
   const navigation = useNavigation();
   return (
