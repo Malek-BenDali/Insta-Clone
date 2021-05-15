@@ -98,6 +98,138 @@ const Login = () => {
           <Text style={styles.secondaryText}> Don't Have an account ? </Text>
         </TouchableOpacity>
       </View>
+      <View style={styles.FormView}>
+        <Formik
+          initialValues={{
+            email: '',
+            password: '',
+          }}
+          validationSchema={reviewSchema}
+          onSubmit={(values, actions) => handleFormSubmit(values, actions)}>
+          {({
+            values,
+            errors,
+            touched,
+            handleBlur,
+            handleSubmit,
+            handleChange,
+          }) => (
+            <View>
+              <TextInput
+                style={styles.input}
+                placeholder="email or user name"
+                value={values.email}
+                onChangeText={handleChange('email')}
+                onBlur={handleBlur('email')}
+              />
+              <Text style={styles.errorMessage}>
+                {' '}
+                {touched.email && errors.email}{' '}
+              </Text>
+              <View style={styles.password}>
+                <TextInput
+                  placeholder="password"
+                  style={{width: '88%'}}
+                  value={values.password}
+                  onChangeText={handleChange('password')}
+                  secureTextEntry={visible}
+                  onBlur={handleBlur('password')}
+                />
+
+                <TouchableOpacity onPress={() => setVisible(prev => !prev)}>
+                  <FontAwesome5
+                    name={visible ? 'eye-slash' : 'eye'}
+                    size={25}
+                    color="#ff69b4"
+                  />
+                </TouchableOpacity>
+              </View>
+              <Text style={styles.errorMessage}>
+                {touched.password && errors.password}
+              </Text>
+              <View style={styles.SubmitView}>
+                <TouchableOpacity
+                  title="submit"
+                  style={styles.primaryButton}
+                  onPress={handleSubmit}>
+                  <Text style={styles.primaryButtonText}>Sign in</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          )}
+        </Formik>
+        <TouchableOpacity
+          style={styles.secondaryText}
+          onPress={() => navigation.navigate('Register')}>
+          <Text style={styles.secondaryText}> Don't Have an account ? </Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.FormView}>
+        <Formik
+          initialValues={{
+            email: '',
+            password: '',
+          }}
+          validationSchema={reviewSchema}
+          onSubmit={(values, actions) => handleFormSubmit(values, actions)}>
+          {({
+            values,
+            errors,
+            touched,
+            handleBlur,
+            handleSubmit,
+            handleChange,
+          }) => (
+            <View>
+              <TextInput
+                style={styles.input}
+                placeholder="email or user name"
+                value={values.email}
+                onChangeText={handleChange('email')}
+                onBlur={handleBlur('email')}
+              />
+              <Text style={styles.errorMessage}>
+                {' '}
+                {touched.email && errors.email}{' '}
+              </Text>
+              <View style={styles.password}>
+                <TextInput
+                  placeholder="password"
+                  style={{width: '88%'}}
+                  value={values.password}
+                  onChangeText={handleChange('password')}
+                  secureTextEntry={visible}
+                  onBlur={handleBlur('password')}
+                />
+
+                <TouchableOpacity onPress={() => setVisible(prev => !prev)}>
+                  <FontAwesome5
+                    name={visible ? 'eye-slash' : 'eye'}
+                    size={25}
+                    color="#ff69b4"
+                  />
+                </TouchableOpacity>
+              </View>
+              <Text style={styles.errorMessage}>
+                {touched.password && errors.password}
+              </Text>
+              <View style={styles.SubmitView}>
+                <TouchableOpacity
+                  title="submit"
+                  style={styles.primaryButton}
+                  onPress={handleSubmit}>
+                  <Text style={styles.primaryButtonText}>Sign in</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          )}
+        </Formik>
+        <TouchableOpacity
+          style={styles.secondaryText}
+          onPress={() => navigation.navigate('Register')}>
+          <Text style={styles.secondaryText}> Don't Have an account ? </Text>
+        </TouchableOpacity>
+      </View>
     </KeyboardAwareScrollView>
   );
 };
